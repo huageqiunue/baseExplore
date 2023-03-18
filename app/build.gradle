@@ -2,17 +2,18 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+def  buildConfig=rootProject.ext.android
 
 android {
-    namespace 'com.junhua.myapplication'
-    compileSdk 33
+    namespace buildConfig.applicationId
+    compileSdk buildConfig.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.junhua.myapplication"
-        minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        applicationId buildConfig.applicationId
+        minSdk buildConfig.minSdkVersion
+        targetSdk buildConfig.targetSdkVersion
+        versionCode buildConfig.versionCode
+        versionName buildConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,12 +33,21 @@ android {
         dataBinding = true
 //        viewBinding = true
     }
+    //重命名apk
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName = "帝国游戏_"+"v${variant.versionCode}_"+variant.name+".apk"
+            }
+    }
 }
 
+def dependenciesMap=rootProject.ext.dependenciesMap
+
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation dependenciesMap.appcompat
+    implementation dependenciesMap.material
+    implementation dependenciesMap.constraintlayout
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
