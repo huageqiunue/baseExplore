@@ -1,4 +1,4 @@
 package com.jiahua.storage
 
-class MyClass {
+class SafParams {
 }
