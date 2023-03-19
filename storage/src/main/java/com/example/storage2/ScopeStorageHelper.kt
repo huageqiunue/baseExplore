@@ -1,4 +1,4 @@
-package com.jiahua.storage
+package com.example.storage2
 
 /**
  * 分区存储
