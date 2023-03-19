@@ -10,8 +10,8 @@ import androidx.viewbinding.ViewBinding
 /**
  * Fragment基类
  */
-abstract class BaseFragment< T : ViewBinding>: Fragment() {
-    private lateinit var _binding: T
+abstract class BaseFragment<VB : ViewBinding>(val bindingInflate:(LayoutInflater, ViewGroup?, Boolean)->VB) : Fragment() {
+    private lateinit var _binding: VB
     protected val mBinding get() = _binding;
 
     override fun onCreateView(
@@ -19,8 +19,12 @@ abstract class BaseFragment< T : ViewBinding>: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        _binding = bindingInflate(inflater, container, false)
+        return _binding.root
     }
 
-    protected abstract fun getViewBinding(): T
+    /**
+     * 初始化界面
+     */
+    abstract fun VB.initView()
 }
