@@ -1,4 +1,4 @@
-package com.example.storage2
+package com.example.storage
 
 import androidx.fragment.app.Fragment
 

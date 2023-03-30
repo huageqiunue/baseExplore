@@ -1,4 +1,4 @@
-package com.example.storage2.api
+package com.example.storage.api
 
 interface IShareStorageApi {
     fun saveFileToOutPutStream():String?

@@ -1,10 +1,9 @@
-package com.junhua.myapplication.Frame
+package com.junhua.myapplication.frame
 
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

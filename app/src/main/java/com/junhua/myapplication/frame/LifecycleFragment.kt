@@ -1,4 +1,4 @@
-package com.junhua.myapplication.Frame
+package com.junhua.myapplication.frame
 
 import android.os.Bundle
 import android.view.LayoutInflater
