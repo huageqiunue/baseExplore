@@ -1,12 +1,23 @@
 package com.example.storage
 
-enum class SAF_OPEN_TYPE {
+import android.net.Uri
 
+/**
+ * 打开类型
+ */
+enum class SafOpenType {
+    ACTION_OPEN_DOCUMENT,
+    ACTION_OPEN_DOCUMENT_TREE
 }
 
 /**
- * saf
+ * saf传递参数
+ * @param startPosition 起始uri
+ * @param safOpenType 打开类型
+ * @param isNewTask 是否在新活动栈打开
  */
 data class SafParams(
-    val string: String
+    val startPosition: Uri,
+    val safOpenType: SafOpenType = SafOpenType.ACTION_OPEN_DOCUMENT,
+    val isNewTask: Boolean = false
 )
