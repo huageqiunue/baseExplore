@@ -1,4 +1,12 @@
 package com.example.storage
 
-class SafParams {
+enum class SAF_OPEN_TYPE {
+
 }
+
+/**
+ * saf
+ */
+data class SafParams(
+    val string: String
+)

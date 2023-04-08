@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import com.jiahua.common.ArrayUtilsKt;
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -22,5 +24,11 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.junhua.myapplication", appContext.getPackageName());
+    }
+
+    @Test
+    public void testArray() {
+        boolean b = ArrayUtilsKt.baseTypeIsIn(1, "2232","1", 321, 321,1);
+        System.out.println("------"+b);
     }
 }
