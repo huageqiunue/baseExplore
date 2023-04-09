@@ -6,11 +6,7 @@ package com.example.storage
  */
 object StorageManage {
 
-    fun getSaf(){
-
-    }
-
-    enum class MediaType{
+    enum class MediaType {
         MUSIC,
         FILES,
         DOWNLOADS,
@@ -18,5 +14,14 @@ object StorageManage {
         AUDIO,
         IMAGES
     }
+
+    var defaultPublicDirectorySubPath: String = "";
+    var defaultPublicDirectoryMimeType: String = "*/*"
+
+    fun getSaf() {
+
+    }
+
+
 
 }

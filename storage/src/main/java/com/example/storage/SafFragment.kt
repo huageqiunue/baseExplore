@@ -1,5 +1,8 @@
 package com.example.storage
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -46,6 +49,7 @@ class SafFragment : Fragment() {
     fun openSaf(safParams: SafParams, safCallback: SafCallback) {
         when (safParams.safOpenType) {
             ACTION_OPEN_DOCUMENT -> {
+
             }
             ACTION_OPEN_DOCUMENT_TREE -> {
             }
@@ -54,4 +58,32 @@ class SafFragment : Fragment() {
         safCallback.succeed(arrayListOf())
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != Activity.RESULT_OK) {
+            mCallback?.failed("")
+            return
+        }
+        when (requestCode) {
+            REQUEST_CODE_NEW_FILE -> {
+                mCallback?.succeed(listOf(data?.data))
+            }
+            REQUEST_CODE_OPEN_FILE, REQUEST_CODE_OPEN_FILE_TREE -> {
+                mCallback?.succeed(listOf(data?.data))
+            }
+            REQUEST_CODE_OPEN_MULTIPLE_FILE -> {
+                //多选文件，如果只选择一个文件，有可能不通过clipData传递，所以获取不到clipData时通过data获取
+                data?.clipData?.let { clipData ->
+                    val count = clipData.itemCount
+                    val list = mutableListOf<Uri?>()
+                    for (i in 0 until count) {
+                        list.add(clipData.getItemAt(i).uri)
+                    }
+                    mCallback?.succeed(list)
+                } ?: kotlin.run {
+                    mCallback?.succeed(listOf(data?.data))
+                }
+            }
+        }
+    }
 }

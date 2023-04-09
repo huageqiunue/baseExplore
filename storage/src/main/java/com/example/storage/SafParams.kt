@@ -18,6 +18,7 @@ enum class SafOpenType {
  */
 data class SafParams(
     val startPosition: Uri,
+    val miniType: Int,
     val safOpenType: SafOpenType = SafOpenType.ACTION_OPEN_DOCUMENT,
     val isNewTask: Boolean = false
 )

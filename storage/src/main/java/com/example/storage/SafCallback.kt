@@ -3,23 +3,23 @@ package com.example.storage
 import android.net.Uri
 
 open class SafCallback {
-    var onSucceed: ((ArrayList<Uri>) -> Unit)? = null
-    var onError: ((String) -> Unit)? = null
+    var onSucceed: ((List<Uri?>) -> Unit)? = null
+    var onFailed: ((String) -> Unit)? = null
 
 
-    fun onSucceed(onSucceed: ((ArrayList<Uri>) -> Unit)) {
+    fun onSucceed(onSucceed: ((List<Uri?>) -> Unit)) {
         this.onSucceed = onSucceed
     }
 
-    fun onError(onError: ((String) -> Unit)) {
-        this.onError = onError
+    fun onFailed(onError: ((String) -> Unit)) {
+        this.onFailed = onError
     }
 
-    open fun succeed(arrayList: ArrayList<Uri>) {
+    open fun succeed(arrayList: List<Uri?>) {
         this.onSucceed?.invoke(arrayList)
     }
 
-    open fun error(errorString: String) {
-        this.onError?.invoke(errorString)
+    open fun failed(errorString: String) {
+        this.onFailed?.invoke(errorString)
     }
 }
