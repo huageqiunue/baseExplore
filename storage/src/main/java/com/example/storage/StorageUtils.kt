@@ -1,4 +1,4 @@
-package com.example.storage.api
+package com.example.storage
 
 import android.content.Context
 import android.content.Intent
@@ -7,10 +7,11 @@ import android.os.Build
 import androidx.annotation.ChecksSdkIntAtLeast
 import java.io.FileNotFoundException
 
-class StorageUtils {
-    companion object {
-        const val OPEN_FILE_DESCRIPTOR_MODE_READ = "r"
-    }
+/**
+ * 存储相关工具类
+ */
+object StorageUtils {
+    const val OPEN_FILE_DESCRIPTOR_MODE_READ = "r"
 
     /**
      * 按xxx(index).xxx的格式自动重命名文件
@@ -26,8 +27,13 @@ class StorageUtils {
     /**
      * 获取后缀名
      */
-    fun getExtraName(displayName: String): String {
-        return "jpg"
+    private fun getExtraName(displayName: String): String {
+        // TODO: 复杂判断后缀 魔法值等
+        val lastIndex = displayName.lastIndexOf(".")
+        if (lastIndex == -1) {
+            return ""
+        }
+        return displayName.substring(lastIndex, displayName.length)
     }
 
     /**
