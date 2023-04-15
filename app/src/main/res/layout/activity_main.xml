@@ -17,4 +17,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.seewo.easinote.view.HideOrShowBar
+        android:id="@+id/toolbar_hide_or_show_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        app:animateDuration="500"
+        app:arrowHeight="40dp"
+        app:arrowMarginTop="10dp"
+        app:arrowSrcForToolbarHide="@drawable/ic_launcher_foreground"
+        app:arrowSrcForToolbarVisible="@drawable/ic_launcher_background"
+        app:arrowWidth="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/openSaf"
+        app:layout_constraintEnd_toEndOf="@id/openSaf"
+        app:layout_constraintStart_toStartOf="@id/openSaf" />
 </androidx.constraintlayout.widget.ConstraintLayout>

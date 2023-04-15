@@ -1,4 +1,4 @@
-package com.junhua.myapplication.Utils
+package com.junhua.myapplication.utils
 
 import android.view.View
 

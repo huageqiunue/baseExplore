@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HideOrShowBarArrowViewStyle">
+        <attr name="arrowWidth" format="dimension" />
+        <attr name="arrowHeight" format="dimension" />
+        <attr name="arrowMarginTop" format="dimension" />
+        <attr name="arrowSrcForToolbarVisible" format="reference|color" />
+        <attr name="arrowSrcForToolbarHide" format="reference|color" />
+        <attr name="animateDuration" format="integer" />
+    </declare-styleable>
+</resources>

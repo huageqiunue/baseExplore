@@ -17,15 +17,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     private fun initListener() {
         mBinding.openSaf.setOnClickListener {
             Log.e("jiahua", "test out")
-            openSafForCallback(SafParams("1".toUri())) {
-                onSucceed {
-                    Log.e("jiahua", "test ou--t${it.joinToString()}");
-                }
-            }
+//            openSafForCallback(SafParams("1".toUri())) {
+//                onSucceed {
+//                    Log.e("jiahua", "test ou--t${it.joinToString()}");
+//                }
+//            }
         }
+        mBinding.toolbarHideOrShowBar.performClick()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-    }
 }

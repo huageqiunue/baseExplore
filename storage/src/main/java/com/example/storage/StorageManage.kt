@@ -1,5 +1,10 @@
 package com.example.storage
 
+import android.content.Context
+import android.os.Environment
+import android.provider.MediaStore
+import android.provider.MediaStore.Audio.Media
+
 
 /**
  * 存储管理类
@@ -10,10 +15,31 @@ object StorageManage {
         MUSIC,
         FILES,
         DOWNLOADS,
-        MOVIES,
         AUDIO,
         IMAGES
     }
+
+    /**
+     * 外部存储路径
+     */
+    fun getExternal() {
+        Environment.getExternalStorageDirectory()
+        Environment.getDownloadCacheDirectory()
+    }
+
+    /**
+     * 内部存储路径
+     */
+    fun getInner(context:Context){
+        context.cacheDir
+//        context.externalCacheDirs
+    }
+
+//    val downlownds = MediaStore.Downloads.EXTERNAL_CONTENT_URI
+//    val downlownds = MediaStore.Video.Media.
+//    val downlownds = MediaStore.Files
+//    val downlownds = MediaStore.Images
+//    val downlownds = MediaStore.Audio
 
     var defaultPublicDirectorySubPath: String = "";
     var defaultPublicDirectoryMimeType: String = "*/*"
@@ -21,7 +47,6 @@ object StorageManage {
     fun getSaf() {
 
     }
-
 
 
 }
