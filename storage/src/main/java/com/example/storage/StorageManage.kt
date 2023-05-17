@@ -2,8 +2,7 @@ package com.example.storage
 
 import android.content.Context
 import android.os.Environment
-import android.provider.MediaStore
-import android.provider.MediaStore.Audio.Media
+import com.example.storage.StorageUtils.sdk29AndUp
 
 
 /**
@@ -30,7 +29,7 @@ object StorageManage {
     /**
      * 内部存储路径
      */
-    fun getInner(context:Context){
+    fun getInner(context: Context) {
         context.cacheDir
 //        context.externalCacheDirs
     }
@@ -45,8 +44,9 @@ object StorageManage {
     var defaultPublicDirectoryMimeType: String = "*/*"
 
     fun getSaf() {
+        sdk29AndUp {
 
+        }
     }
-
 
 }

@@ -11,7 +11,7 @@ import java.io.FileNotFoundException
  * 存储相关工具类
  */
 object StorageUtils {
-    const val OPEN_FILE_DESCRIPTOR_MODE_READ = "r"
+    private const val OPEN_FILE_DESCRIPTOR_MODE_READ = "r"
 
     /**
      * 按xxx(index).xxx的格式自动重命名文件
