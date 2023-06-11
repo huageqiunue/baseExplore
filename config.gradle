@@ -1,38 +1,41 @@
-ext{
+ext {
     android = [
+            applicationId    : 'com.junhua.myapplication',
+            storageId        : 'com.junhua.storage',
+            commonId         : 'com.junhua.commmon',
+            downloadId       : 'com.junhua.download',
 
-            compileSdkVersion   : 33,
-            buildToolsVersion   :"30.0.1",
-            applicationId       :'com.junhua.myapplication',
-            minSdkVersion       : 19,
-            targetSdkVersion    : 33,
-            versionCode         : 1,
-            versionName         : "1.0.0",
-            ndkVersion          : "21.0.6113669"
+            compileSdkVersion: 33,
+            buildToolsVersion: "30.0.1",
+            minSdkVersion    : 19,
+            targetSdkVersion : 33,
+            versionCode      : 1,
+            versionName      : "1.0.0",
+            ndkVersion       : "21.0.6113669"
     ]
     dependent_Version = [
             appcompat_version: "1.6.0",
     ]
 
     dependenciesMap = [
-            "appcompat"              : "androidx.appcompat:appcompat:${dependent_Version["appcompat_version"]}",
-            "appcompat-resources"    : "androidx.appcompat:appcompat-resources:${dependent_Version["appcompat_version"]}",
+            "appcompat"          : "androidx.appcompat:appcompat:${dependent_Version["appcompat_version"]}",
+            "appcompat-resources": "androidx.appcompat:appcompat-resources:${dependent_Version["appcompat_version"]}",
 
-            "material"               : 'com.google.android.material:material:1.8.0',
-            "constraintlayout"       : 'androidx.constraintlayout:constraintlayout:2.0.4',
-            "navigation-fragment"    : 'androidx.navigation:navigation-fragment:2.2.2',
-            "navigation"             : 'androidx.navigation:navigation-ui:2.2.2',
+            "material"           : 'com.google.android.material:material:1.8.0',
+            "constraintlayout"   : 'androidx.constraintlayout:constraintlayout:2.0.4',
+            "navigation-fragment": 'androidx.navigation:navigation-fragment:2.2.2',
+            "navigation"         : 'androidx.navigation:navigation-ui:2.2.2',
 
-            "okio"                   : 'com.squareup.okio:okio:2.2.2',
-            "okhttp"                 : 'com.squareup.okhttp3:okhttp:3.12.1',
-            "crashreport"            : 'com.tencent.bugly:crashreport:latest.release',
-            "nativecrashreport"      : 'com.tencent.bugly:nativecrashreport:latest.release',
+            "okio"               : 'com.squareup.okio:okio:2.2.2',
+            "okhttp"             : 'com.squareup.okhttp3:okhttp:3.12.1',
+            "crashreport"        : 'com.tencent.bugly:crashreport:latest.release',
+            "nativecrashreport"  : 'com.tencent.bugly:nativecrashreport:latest.release',
 
     ]
-    sign=[
-            keyAlias :'admin',
-            keyPassword :'admin',
-            storeFile :"/Users/Project/admin.keystore",
+    sign = [
+            keyAlias     : 'admin',
+            keyPassword  : 'admin',
+            storeFile    : "/Users/Project/admin.keystore",
             storePassword: 'admin',
     ]
 }

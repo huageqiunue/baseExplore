@@ -2,19 +2,17 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
+def buildConfig = rootProject.ext.android
 
 android {
-    namespace 'com.example.storage'
-    compileSdk 33
+    namespace buildConfig.storageId
+    compileSdk buildConfig.compileSdkVersion
 
     defaultConfig {
-//        applicationId "com.example.storage"
-        minSdk 19
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk buildConfig.minSdkVersion
+        targetSdk buildConfig.targetSdkVersion
+        versionCode buildConfig.versionCode
+        versionName buildConfig.versionName
     }
 
     buildTypes {
@@ -30,9 +28,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
-def dependenciesMap=rootProject.ext.dependenciesMap
+def dependenciesMap = rootProject.ext.dependenciesMap
 
 dependencies {
     implementation dependenciesMap.appcompat

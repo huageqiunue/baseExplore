@@ -4,10 +4,10 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
-import com.example.storage.SafCallback;
-import com.example.storage.SafExtensionKt;
-import com.example.storage.SafOpenType;
-import com.example.storage.SafParams;
+import com.junhua.storage.SafCallback;
+import com.junhua.storage.SafOpenType;
+import com.junhua.storage.SafParams;
+import com.junhua.storage.SafExtensionKt;
 import com.junhua.myapplication.databinding.ActivitySafBinding;
 import com.junhua.myapplication.frame.BaseActivity;
 
