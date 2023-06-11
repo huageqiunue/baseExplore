@@ -12,9 +12,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "My Application"
+rootProject.name = "BaseExplore"
 include ':app'
 include ':common'
 include ':download'
 include ':storage'
-include ':mark'

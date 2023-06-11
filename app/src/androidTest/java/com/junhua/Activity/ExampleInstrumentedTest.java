@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-import com.junhua.common.ArrayUtilsKt;
+import com.junhua.common.ArrayExtensionKt;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -28,7 +28,7 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void testArray() {
-        boolean b = ArrayUtilsKt.baseTypeIsIn(1, "2232","1", 321, 321,1);
+        boolean b = ArrayExtensionKt.baseTypeIsIn(1, "2232","1", 321, 321,1);
         System.out.println("------"+b);
     }
 }
