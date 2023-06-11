@@ -1,6 +1,9 @@
 package com.junhua.myapplication.activity
 
 import android.util.Log
+import androidx.core.net.toUri
+import com.example.storage.SafParams
+import com.example.storage.openSafForCallback
 import com.junhua.myapplication.databinding.ActivityMainBinding
 import com.junhua.myapplication.frame.BaseActivity
 
@@ -10,14 +13,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     private fun initListener() {
-        mBinding.openSaf.setOnClickListener {
-            Log.e("jiahua", "test out")
-//            openSafForCallback(SafParams("1".toUri())) {
-//                onSucceed {
-//                    Log.e("jiahua", "test ou--t${it.joinToString()}");
-//                }
-//            }
-        }
+
     }
 
 }
