@@ -7,5 +7,5 @@ interface INode {
     /**
      * 执行相应的任务
      */
-    fun process()
+    fun process(iCallback: ICallback)
 }

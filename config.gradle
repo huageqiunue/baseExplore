@@ -25,7 +25,12 @@ ext {
                        "okio"               : 'com.squareup.okio:okio:2.2.2',
                        "okhttp"             : 'com.squareup.okhttp3:okhttp:3.12.1',
                        "crashreport"        : 'com.tencent.bugly:crashreport:latest.release',
-                       "nativecrashreport"  : 'com.tencent.bugly:nativecrashreport:latest.release',]
+                       "nativecrashreport"  : 'com.tencent.bugly:nativecrashreport:latest.release',
+                       "hilt"               : 'com.google.dagger:hilt-android:2.44',
+                       "hilt_compiler"      : 'com.google.dagger:hilt-compiler:2.44',
+                       "okhttp"             : 'com.squareup.okhttp3:okhttp:3.5.0',
+                       "retrofit"           : 'com.squareup.retrofit2:retrofit:2.9.0',
+    ]
     testDependenciesMap = ["testJunit"   : 'androidx.test.ext:junit:1.1.5',
                            "testExtJunit": 'junit:junit:4.13.2',
                            "testEspresso": 'androidx.test.espresso:espresso-core:3.5.1']

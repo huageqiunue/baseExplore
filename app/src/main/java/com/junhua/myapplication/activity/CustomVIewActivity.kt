@@ -5,7 +5,12 @@ import com.junhua.myapplication.frame.BaseActivity
 
 class CustomVIewActivity : BaseActivity<ActivityCustomViewBinding>(ActivityCustomViewBinding::inflate) {
     override fun ActivityCustomViewBinding.initViews() {
+    }
 
+    override fun ActivityCustomViewBinding.initListener() {
+    }
+
+    override fun ActivityCustomViewBinding.initConfig() {
 
     }
 }

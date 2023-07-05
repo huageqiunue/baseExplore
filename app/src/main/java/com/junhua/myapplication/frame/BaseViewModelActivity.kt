@@ -22,9 +22,25 @@ abstract class BaseViewModelActivity<VB : ViewDataBinding, VM : ViewModel>(
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         setContentView(mBinding.root)
-        mBinding.initViews()
+        mBinding.init()
     }
 
+    /**
+     * 初始化
+     */
+    private fun VB.init() {
+        initViews()
+        initListener()
+    }
+
+    /**
+     * 初始化View
+     */
     abstract fun VB.initViews()
+
+    /**
+     * 初始化监听
+     */
+    abstract fun VB.initListener()
 
 }

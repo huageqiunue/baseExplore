@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="test">junhua</string>
+    <string name="testLink">@string/test</string>
+    <string name="testLink2">@string/testLink</string>
 </resources>
