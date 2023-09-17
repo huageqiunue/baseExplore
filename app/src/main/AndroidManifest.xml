@@ -21,13 +21,11 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".activity.TouchActivity"
-            android:exported="true" />
+            android:name=".activity.DemoActivity"
+            android:exported="true">
+        </activity>
         <activity
-            android:name=".activity.CustomViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.SafActivity"
+            android:name=".activity.SampleActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +33,15 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".activity.TouchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.CustomViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SafActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true" />

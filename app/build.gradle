@@ -55,13 +55,13 @@ dependencies {
     implementation dependenciesMap.material
     implementation dependenciesMap.constraintlayout
     implementation dependenciesMap.hilt
-    kapt dependenciesMap.hilt_compiler
     implementation dependenciesMap.okhttp
     implementation dependenciesMap.retrofit
     implementation dependenciesMap.rxjava
     implementation dependenciesMap.rxandroid
-    implementation dependenciesMap.pdfViewer
+    kapt dependenciesMap.hilt_compiler
 
+//    implementation dependenciesMap.pdfViewer
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

@@ -1,26 +1,25 @@
 package com.junhua.myapplication.frame
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 
 /**
  * Activity基类
  */
-abstract class BaseViewModelActivity<VB : ViewDataBinding, VM : ViewModel>(
-    val block: (LayoutInflater) -> VB, var viewModelClass: Class<VM>
+abstract class BaseViewModelActivity<VB : ViewBinding, VM : ViewModel>(
+    val block: (LayoutInflater) -> VB, private val viewModelClass: Class<VM>
 ) : AppCompatActivity() {
     val mBinding by lazy { block(layoutInflater) }
     val viewModel: VM by lazy {
         ViewModelProvider(this)[viewModelClass]
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         mBinding.init()
     }

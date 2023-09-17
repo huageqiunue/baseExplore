@@ -1,4 +1,6 @@
 package com.junhua.myapplication.repository
 
-class RemoteDataSource {
+import javax.inject.Inject
+
+class RemoteDataSource @Inject constructor() {
 }
