@@ -54,11 +54,13 @@ dependencies {
     implementation dependenciesMap.appcompat
     implementation dependenciesMap.material
     implementation dependenciesMap.constraintlayout
-
     implementation dependenciesMap.hilt
     kapt dependenciesMap.hilt_compiler
     implementation dependenciesMap.okhttp
     implementation dependenciesMap.retrofit
+    implementation dependenciesMap.rxjava
+    implementation dependenciesMap.rxandroid
+    implementation dependenciesMap.pdfViewer
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
