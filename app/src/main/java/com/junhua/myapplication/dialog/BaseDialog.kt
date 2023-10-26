@@ -1,5 +1,8 @@
 package com.junhua.myapplication.dialog
 
-class BaseDialog {
+import android.app.Dialog
+import android.content.DialogInterface
 
+abstract class BaseDialog<out D : DialogInterface> {
+    abstract fun BuildDialog(): D
 }
