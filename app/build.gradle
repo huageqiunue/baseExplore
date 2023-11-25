@@ -16,7 +16,7 @@ android {
         targetSdk buildConfig.targetSdkVersion
         versionCode buildConfig.versionCode
         versionName buildConfig.versionName
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -39,7 +39,7 @@ android {
     android.applicationVariants.all {
         variant ->
             variant.outputs.all {
-                outputFileName = "帝国游戏_"+"v${variant.versionCode}_"+variant.name+".apk"
+                outputFileName ="v${variant.versionCode}_"+variant.name+".apk"
             }
     }
 }
