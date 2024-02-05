@@ -66,10 +66,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    implementation 'com.google.mlkit:vision-common:17.3.0'
+    implementation 'com.google.mlkit:segmentation-selfie:16.0.0-beta4'
+
     //引入通用库
     implementation project(":common")
     //引入下载库
     implementation project(":download")
     //引入存储库
     implementation project(":storage")
+    //引入OpenCv库
+    implementation project(":openCV")
 }
