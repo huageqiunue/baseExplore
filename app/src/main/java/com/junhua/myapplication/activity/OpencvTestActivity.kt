@@ -5,6 +5,10 @@ import android.graphics.BitmapFactory
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.segmentation.Segmentation
 import com.google.mlkit.vision.segmentation.selfie.SelfieSegmenterOptions
+import com.google.mlkit.vision.segmentation.subject.SubjectSegmentation
+import com.google.mlkit.vision.segmentation.subject.SubjectSegmenter
+import com.google.mlkit.vision.segmentation.subject.SubjectSegmenterOptions
+import com.junhua.common.showToast
 import com.junhua.myapplication.R
 import com.junhua.myapplication.databinding.ActivityOpencvTestBinding
 import com.junhua.myapplication.frame.BaseActivity
@@ -20,7 +24,7 @@ class OpencvTestActivity : BaseActivity<ActivityOpencvTestBinding>(ActivityOpenc
 
     override fun ActivityOpencvTestBinding.initListener() {
         mlkitSegmentationButton.setOnClickListener {
-            val decodeResource = BitmapFactory.decodeResource(resources, R.mipmap.img_2)
+            val decodeResource = BitmapFactory.decodeResource(resources, R.mipmap.img_1)
             val options = SelfieSegmenterOptions.Builder()
                 .setDetectorMode(SelfieSegmenterOptions.SINGLE_IMAGE_MODE)
                 .enableRawSizeMask()
@@ -45,9 +49,23 @@ class OpencvTestActivity : BaseActivity<ActivityOpencvTestBinding>(ActivityOpenc
                     e.printStackTrace()
                 }
         }
+        objectSegmentationButton.setOnClickListener {
+            val decodeResource = BitmapFactory.decodeResource(resources, R.mipmap.fish)
+            val image = InputImage.fromBitmap(decodeResource, 0)
+            val build = SubjectSegmenterOptions.Builder().enableMultipleSubjects(SubjectSegmenterOptions.SubjectResultOptions.Builder().enableConfidenceMask().build()).build()
+            val segmentation: SubjectSegmenter = SubjectSegmentation.getClient(build)
+            segmentation.process(image).addOnSuccessListener {
+                showToast("个数为：${it.subjects.size}")
+                this@OpencvTestActivity.runOnUiThread {
+                    imageView.setImageBitmap(it.subjects.get(0).bitmap)
+                }
+            }
+        }
+        grebCutButton.setOnClickListener {
+        }
     }
 
     override fun ActivityOpencvTestBinding.initConfig() {
-        TODO("Not yet implemented")
+//        OpenCVLoader.initDebug()
     }
 }
