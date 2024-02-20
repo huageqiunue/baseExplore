@@ -1,11 +1,10 @@
 package com.junhua.myapplication.activity
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.*
+import androidx.annotation.ColorInt
 import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.segmentation.Segmentation
-import com.google.mlkit.vision.segmentation.selfie.SelfieSegmenterOptions
 import com.google.mlkit.vision.segmentation.subject.SubjectSegmentation
+import com.google.mlkit.vision.segmentation.subject.SubjectSegmentationResult
 import com.google.mlkit.vision.segmentation.subject.SubjectSegmenter
 import com.google.mlkit.vision.segmentation.subject.SubjectSegmenterOptions
 import com.junhua.common.showToast
@@ -23,32 +22,6 @@ class OpencvTestActivity : BaseActivity<ActivityOpencvTestBinding>(ActivityOpenc
     }
 
     override fun ActivityOpencvTestBinding.initListener() {
-        mlkitSegmentationButton.setOnClickListener {
-            val decodeResource = BitmapFactory.decodeResource(resources, R.mipmap.img_1)
-            val options = SelfieSegmenterOptions.Builder()
-                .setDetectorMode(SelfieSegmenterOptions.SINGLE_IMAGE_MODE)
-                .enableRawSizeMask()
-                .setStreamModeSmoothingRatio(1f)
-                .build()
-
-            val segmenter = Segmentation.getClient(options)
-            val image = InputImage.fromBitmap(decodeResource, 0)
-            segmenter.process(image).addOnSuccessListener { result ->
-                // 处理分割结果
-                val bitmap = Bitmap.createBitmap(result.width, result.height, Bitmap.Config.ARGB_8888)
-                val pixels = IntArray(result.width * result.height)
-                result.buffer.rewind()
-                result.buffer.asIntBuffer().get(pixels)
-                bitmap.setPixels(pixels, 0, result.width, 0, 0, result.width, result.height)
-                this@OpencvTestActivity.runOnUiThread {
-                    imageView.setImageBitmap(bitmap)
-                }
-            }
-                .addOnFailureListener { e ->
-                    // 处理错误
-                    e.printStackTrace()
-                }
-        }
         objectSegmentationButton.setOnClickListener {
             val decodeResource = BitmapFactory.decodeResource(resources, R.mipmap.fish)
             val image = InputImage.fromBitmap(decodeResource, 0)
@@ -57,12 +30,46 @@ class OpencvTestActivity : BaseActivity<ActivityOpencvTestBinding>(ActivityOpenc
             segmentation.process(image).addOnSuccessListener {
                 showToast("个数为：${it.subjects.size}")
                 this@OpencvTestActivity.runOnUiThread {
-                    imageView.setImageBitmap(it.subjects.get(0).bitmap)
+                    val resultBitmap = Bitmap.createBitmap(decodeResource.getWidth(), decodeResource.getHeight(), Bitmap.Config.ARGB_8888)
+                    val maskBitmap = Bitmap.createBitmap(
+                        maskColorsFromFloatBuffer(it, decodeResource.getWidth(), decodeResource.getHeight()),
+                        decodeResource.width,
+                        decodeResource.height,
+                        Bitmap.Config.ARGB_8888
+                    )
+                    val canvas = Canvas(resultBitmap)
+                    canvas.drawBitmap(decodeResource, 0f, 0f, null)
+                    val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+                    paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_IN); // 设置合成模式为DST_IN
+                    canvas.drawBitmap(maskBitmap, 0f, 0f, paint);
+                    imageView.setImageBitmap(resultBitmap)
                 }
             }
         }
+
         grebCutButton.setOnClickListener {
         }
+    }
+
+    @ColorInt
+    private fun maskColorsFromFloatBuffer(subjectSegmentationResult: SubjectSegmentationResult, width: Int, height: Int): IntArray {
+        @ColorInt val colors = IntArray(width * height)
+        for (k in 0 until subjectSegmentationResult.subjects.size) {
+            val subject = subjectSegmentationResult.subjects[k]
+            val color = Color.RED
+            val mask = subject.confidenceMask
+            for (j in 0 until subject.height) {
+                for (i in 0 until subject.width) {
+                    if (mask!!.get() > 0.5) {
+                        colors[(subject.startY + j) * width + subject.startX + i] = color
+                    }
+                }
+            }
+            // Reset [FloatBuffer] pointer to beginning, so that the mask can be redrawn if screen is
+            // refreshed
+            mask!!.rewind()
+        }
+        return colors
     }
 
     override fun ActivityOpencvTestBinding.initConfig() {
