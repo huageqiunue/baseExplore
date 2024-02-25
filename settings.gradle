@@ -16,7 +16,9 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "BaseExplore"
-include ':app'
+//include ':app'
+//include ':demoproject'
+include ':fivechessgame'
 include ':common'
 include ':download'
 include ':storage'

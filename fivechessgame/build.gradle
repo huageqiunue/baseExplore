@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+def  buildConfig=rootProject.ext.android
+
+android {
+    namespace buildConfig.applicationId
+    compileSdk buildConfig.compileSdkVersion
+
+    defaultConfig {
+        applicationId buildConfig.applicationId
+        minSdk buildConfig.minSdkVersion
+        targetSdk buildConfig.targetSdkVersion
+        versionCode buildConfig.versionCode
+        versionName buildConfig.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+    //重命名apk
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName ="v${variant.versionCode}_"+variant.name+".apk"
+            }
+    }
+}
+
+def dependenciesMap=rootProject.ext.dependenciesMap
+
+kapt {
+    correctErrorTypes true
+}
+
+dependencies {
+    implementation dependenciesMap.appcompat
+    implementation dependenciesMap.material
+    implementation dependenciesMap.constraintlayout
+    implementation dependenciesMap.hilt
+    implementation dependenciesMap.okhttp
+    implementation dependenciesMap.retrofit
+    implementation dependenciesMap.rxjava
+    implementation dependenciesMap.rxandroid
+    kapt dependenciesMap.hilt_compiler
+
+//    implementation dependenciesMap.pdfViewer
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'com.google.android.gms:play-services-mlkit-subject-segmentation:16.0.0-beta1'
+
+
+    //引入通用库
+    implementation project(":common")
+    //引入下载库
+    implementation project(":download")
+    //引入存储库
+    implementation project(":storage")
+}
