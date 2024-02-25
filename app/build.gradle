@@ -75,6 +75,4 @@ dependencies {
     implementation project(":download")
     //引入存储库
     implementation project(":storage")
-    //引入OpenCv库
-    implementation project(":openCV")
 }
